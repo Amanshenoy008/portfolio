@@ -1,12 +1,13 @@
 'use client';
 import { useState } from 'react';
-import ProjectCard from '../components/projectcard';
-import {projects, apps , blogPosts} from '../data/content.js'
-import BlogCard from '@/components/blogcard';
+import ProjectCard from '../components/projectcard'
+import AppCard from '../components/appcard'
+import BlogCard from '../components/blogcard'
+import { projects, apps, blogPosts } from '../data/content.js'
 import { LuLinkedin,LuGithub} from "react-icons/lu";
 import { PiExport } from "react-icons/pi";
 
-const tabs = ['Blog', 'Apps', 'Projects'];
+const tabs = ['About', 'Projects', 'Apps', 'Blog']
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('Projects');
@@ -33,7 +34,7 @@ export default function Home() {
         <div className=" rounded-md w-96 h-auto p-4">
   {/* Tab Buttons */}
   <div className="flex space-x-2 mb-4">
-    {['About', 'Projects', 'Blog'].map((tab) => (
+    {tabs.map((tab) => (
       <button
         key={tab}
         onClick={() => setActiveTab(tab)}
@@ -54,19 +55,26 @@ export default function Home() {
         Hey! I'm Aman Shenoy — a cybersecurity grad student who loves tech, gaming, and solving real-world problems through code.
       </p>
     )}
-    {activeTab === 'Projects' && 
-    <div className="flex flex-col space-y-4">
-    {
-    projects.map((p) => (
-      <ProjectCard key={p.name} {...p} />
-
-    ))}
-  </div>
-}
+    {activeTab === 'Projects' && (
+      <div className="flex flex-col space-y-4">
+        {projects.map((p) => (
+          <ProjectCard key={p.name} {...p} />
+        ))}
+      </div>
+    )}
+    {activeTab === 'Apps' && (
+      <div className="flex flex-col space-y-4">
+        {apps.map((a) => (
+          <AppCard key={a.name} {...a} />
+        ))}
+      </div>
+    )}
     {activeTab === 'Blog' && (
-      <p>
-        Coming soon: I'll be writing about my learnings in cybersecurity, React projects, and startup experiments.
-      </p>
+      <div className="flex flex-col space-y-4">
+        {blogPosts.map((b) => (
+          <BlogCard key={b.link} {...b} />
+        ))}
+      </div>
     )}
   </div>
 </div>
