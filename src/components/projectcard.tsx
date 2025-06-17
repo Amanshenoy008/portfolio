@@ -1,23 +1,19 @@
-type projectprops = {
-    name:string,
-    description:string,
-    stars:number,
-    icon: string
+export type ProjectProps = {
+  name: string
+  description: string
+  stars: number
+  icon: string
 }
 
+export default function ProjectCard({ name, description, stars, icon }: ProjectProps) {
+  const repoUrl = `https://github.com/${name}`
 
-
-export default function ProjectCard({ name, description, stars, icon }: projectprops) {
-  const repoUrl = `https://github.com/${name}`;
-
-    return (
-      <div className="p-4 bg-white rounded-lg shadow flex items-center justify-between">
+  return (
+    <div className="p-4 bg-white rounded-lg shadow flex items-center justify-between">
       <div className="flex items-center space-x-4">
-        {icon && (
-          <img src={icon} alt="icon" className="w-6 h-6 object-contain" />
-        )}
+        {icon && <img src={icon} alt="icon" className="w-6 h-6 object-contain" />}
         <div>
-        <a
+          <a
             href={repoUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -30,6 +26,5 @@ export default function ProjectCard({ name, description, stars, icon }: projectp
       </div>
       <span className="text-sm text-gray-500">⭐ {stars}</span>
     </div>
-    );
-  }
-  
+  )
+}
